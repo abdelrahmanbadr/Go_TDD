@@ -40,12 +40,22 @@ func (self *InMemoryUsersRepository) List() ([]*model.User, error) {
 }
 
 func (self *InMemoryUsersRepository) FindByEmail(email string) (*model.User, error) {
-	return fakeUsers[0], nil
+
+	for _, user := range self.usersMap {
+		if strings.Contains(strings.ToLower(user.Email), email) {
+			return user,nil
+		}
+	}
+	return nil, errors.New(common.USER_NOT_FOUND)
 }
 
+//Find user by id
 func (self *InMemoryUsersRepository) FindById(id string) (*model.User, error) {
-	return fakeUsers[0], nil
-	//return errors.New(common.USER_NOT_FOUND)
+	user := self.usersMap[id]
+	if user == nil {
+		return nil, errors.New(common.USER_NOT_FOUND)
+	}
+	return user, nil
 }
 
 func (self *InMemoryUsersRepository) Store(user *model.User) (*model.User, error) {
