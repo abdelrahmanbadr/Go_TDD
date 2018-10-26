@@ -13,16 +13,13 @@ type InMemoryUsersRepository struct {
 }
 
 func NewFakeRepository() interfaces.UserRepository {
-	//setInMemoryUsers()
-	return &InMemoryUsersRepository{
-		usersMap: map[string]*model.User,
-	}
+	var userMap map[string]*model.User
+	return &InMemoryUsersRepository{userMap}
 }
 
-var fakeUsers []*model.User
 // Fake repository data
-func setFakeUsers() {
-	fakeUsers = []*model.User{
+func setFakeUsers() []*model.User {
+	return []*model.User{
 		{Id: "1", Email: "test1@test.com", Describtion: "describtion1", Age: 20, IsAdmin: true},
 		{Id: "2", Email: "test2@test.com", Describtion: "describtion2", Age: 30, IsAdmin: false},
 		{Id: "3", Email: "test3@test.com", Describtion: "describtion3", Age: 40, IsAdmin: false},
@@ -43,7 +40,7 @@ func (self *InMemoryUsersRepository) FindByEmail(email string) (*model.User, err
 
 	for _, user := range self.usersMap {
 		if strings.Contains(strings.ToLower(user.Email), email) {
-			return user,nil
+			return user, nil
 		}
 	}
 	return nil, errors.New(common.USER_NOT_FOUND)
