@@ -1,4 +1,4 @@
-module tdd
+module user_tdd
 
 require (
 	github.com/fly365com/flybase v0.0.0-20180920075919-770be8c0e19e

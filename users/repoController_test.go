@@ -1,4 +1,4 @@
-package controllers_test
+package users
 //
 //import (
 //	"github.com/stretchr/testify/assert"

@@ -3,7 +3,8 @@ package common
 import (
 	"github.com/go-chi/chi"
 	"net/http"
-	"tdd/routes"
+	"user_tdd/routes"
+	"encoding/json"
 )
 
 func StartServer(port string, routes []routes.Route) {
@@ -17,4 +18,10 @@ func GetRouter(routes []routes.Route) *chi.Mux {
 	}
 	return r
 
+}
+func RespondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
+	response, _ := json.Marshal(payload)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(code)
+	w.Write(response)
 }
