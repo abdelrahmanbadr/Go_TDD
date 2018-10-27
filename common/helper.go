@@ -34,9 +34,9 @@ func RespondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 }
 
 func GetMongoDbConnection(dbConfig DbConfig) (*mgo.Database, error) {
-	session, err := mgo.Dial(dbConfig.DSN)
+	session, err := mgo.Dial(dbConfig.DbHost)
 	if err != nil {
-		log.Fatalf(CANT_NOT_CONNECT_DB, dbConfig.DSN, err)
+		log.Fatalf(CANT_NOT_CONNECT_DB, dbConfig.DbHost, err)
 		return nil, err
 	}
 	return session.DB(dbConfig.DbName), nil

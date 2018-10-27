@@ -45,3 +45,7 @@ func (self *UserService) Delete(id string) error {
 	}
 	return self.repo.Delete(id)
 }
+
+func (self *UserService) List() ([]*model.User, error) {
+	return self.repo.List()
+}

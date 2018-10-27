@@ -4,27 +4,25 @@ import (
 	"errors"
 	"strings"
 	"user_tdd/common"
-	"user_tdd/users/interfaces"
-	"user_tdd/users/model"
+	"user_tdd/user/interfaces"
+	"user_tdd/user/model"
 )
 
 type InMemoryUsersRepository struct {
 	usersMap map[string]*model.User
 }
 
-func NewFakeRepository() interfaces.UserRepository {
-	var userMap map[string]*model.User
-	return &InMemoryUsersRepository{userMap}
+func NewInMemoryRepository() interfaces.UserRepository {
+	return &InMemoryUsersRepository{setFakeUsers()}
 }
 
 // Fake repository data
-func setFakeUsers() []*model.User {
-	return []*model.User{
-		{Id: "1", Email: "test1@test.com", Describtion: "describtion1", Age: 20, IsAdmin: true},
-		{Id: "2", Email: "test2@test.com", Describtion: "describtion2", Age: 30, IsAdmin: false},
-		{Id: "3", Email: "test3@test.com", Describtion: "describtion3", Age: 40, IsAdmin: false},
-		{Id: "4", Email: "test4@test.com", Describtion: "describtion4", Age: 50, IsAdmin: false},
-	}
+func setFakeUsers() map[string]*model.User {
+	m := make(map[string]*model.User)
+	m["1"] = &model.User{Id: "1", Name: "ALi", Email: "test1@test.com", Describtion: "describtion1", Age: 20, IsAdmin: true}
+	m["2"] = &model.User{Id: "2", Name: "Ahmed", Email: "test2@test.com", Describtion: "describtion2", Age: 20, IsAdmin: true}
+	m["3"] = &model.User{Id: "3", Name: "Mohamed", Email: "test3@test.com", Describtion: "describtion3", Age: 20, IsAdmin: true}
+	return m
 
 }
 

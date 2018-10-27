@@ -1,13 +1,24 @@
 package main
 
 import (
+	"net/http"
 	"user_tdd/common"
-	"user_tdd/routes"
+	"user_tdd/user/repository"
+	"user_tdd/user/service"
 )
 
 func main() {
-	routes := routes.GetRoutes()
-	common.StartServer("8081", routes)
+	http.HandleFunc("/users", GetAllUsers)
+	http.ListenAndServe(":8080", nil)
+	//routes := routes.GetRoutes()
+	//common.StartServer("8081", routes)
+}
+
+func GetAllUsers(w http.ResponseWriter, r *http.Request) {
+	repo := repository.NewInMemoryRepository()
+	service := service.NewUserService(repo)
+	users, _ := service.List()
+	common.RespondWithJSON(w, http.StatusOK, users)
 }
 
 //https://github.com/eminetto/clean-architecture-go
