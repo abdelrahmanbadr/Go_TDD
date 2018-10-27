@@ -3,8 +3,8 @@ package service
 import (
 	"errors"
 	"user_tdd/common"
-	"user_tdd/users/interfaces"
-	"user_tdd/users/model"
+	"user_tdd/user/interfaces"
+	"user_tdd/user/model"
 )
 
 type UserService struct {

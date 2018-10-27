@@ -2,8 +2,7 @@ package routes
 
 import (
 	"net/http"
-	"tdd/controllers"
-	"tdd/repos"
+
 )
 
 type Route struct {

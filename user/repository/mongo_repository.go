@@ -3,8 +3,8 @@ package repository
 import (
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
-	"user_tdd/users/interfaces"
-	"user_tdd/users/model"
+	"user_tdd/user/interfaces"
+	"user_tdd/user/model"
 )
 
 type MongoUserRepo struct {
@@ -18,7 +18,7 @@ func NewMongoUserRepo(Conn *mgo.Database) interfaces.UserRepository {
 
 func (self *MongoUserRepo) GetUserCollection() *mgo.Collection {
 
-	return self.dbConnection.C("users")
+	return self.dbConnection.C("user")
 }
 
 func (self *MongoUserRepo) List() ([]*model.User, error) {

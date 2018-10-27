@@ -1,6 +1,6 @@
 package interfaces
 
-import "user_tdd/users/model"
+import "user_tdd/user/model"
 
 type UserService interface {
 	IsDuplicatedEmail(email string) bool
