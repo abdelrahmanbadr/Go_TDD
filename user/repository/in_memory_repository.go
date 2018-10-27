@@ -8,12 +8,12 @@ import (
 	"user_tdd/user/model"
 )
 
-type InMemoryUsersRepository struct {
+type inMemoryUsersRepository struct {
 	usersMap map[string]*model.User
 }
 
 func NewInMemoryRepository() interfaces.UserRepository {
-	return &InMemoryUsersRepository{setFakeUsers()}
+	return &inMemoryUsersRepository{setFakeUsers()}
 }
 
 // Fake repository data
@@ -26,7 +26,7 @@ func setFakeUsers() map[string]*model.User {
 
 }
 
-func (self *InMemoryUsersRepository) List() ([]*model.User, error) {
+func (self *inMemoryUsersRepository) List() ([]*model.User, error) {
 	var users []*model.User
 	for _, user := range self.usersMap {
 		users = append(users, user)
@@ -34,7 +34,7 @@ func (self *InMemoryUsersRepository) List() ([]*model.User, error) {
 	return users, nil
 }
 
-func (self *InMemoryUsersRepository) FindByEmail(email string) (*model.User, error) {
+func (self *inMemoryUsersRepository) FindByEmail(email string) (*model.User, error) {
 
 	for _, user := range self.usersMap {
 		if strings.Contains(strings.ToLower(user.Email), email) {
@@ -45,7 +45,7 @@ func (self *InMemoryUsersRepository) FindByEmail(email string) (*model.User, err
 }
 
 //Find user by id
-func (self *InMemoryUsersRepository) FindById(id string) (*model.User, error) {
+func (self *inMemoryUsersRepository) FindById(id string) (*model.User, error) {
 	user := self.usersMap[id]
 	if user == nil {
 		return nil, errors.New(common.USER_NOT_FOUND)
@@ -53,14 +53,14 @@ func (self *InMemoryUsersRepository) FindById(id string) (*model.User, error) {
 	return user, nil
 }
 
-func (self *InMemoryUsersRepository) Store(user *model.User) (*model.User, error) {
+func (self *inMemoryUsersRepository) Store(user *model.User) (*model.User, error) {
 
 	self.usersMap[user.Id] = user
 	return user, nil
 }
 
 //Delete a user
-func (self *InMemoryUsersRepository) Delete(id string) error {
+func (self *inMemoryUsersRepository) Delete(id string) error {
 	_, err := self.FindById(id)
 	if err != nil {
 		return err
@@ -70,7 +70,7 @@ func (self *InMemoryUsersRepository) Delete(id string) error {
 	return nil
 }
 
-func (self *InMemoryUsersRepository) Search(query string) ([]*model.User, error) {
+func (self *inMemoryUsersRepository) Search(query string) ([]*model.User, error) {
 	var users []*model.User
 	for _, user := range self.usersMap {
 		if strings.Contains(strings.ToLower(user.Name), query) {

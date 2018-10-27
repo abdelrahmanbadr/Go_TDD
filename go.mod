@@ -6,7 +6,7 @@ require (
 	github.com/go-chi/chi v3.3.3+incompatible
 	github.com/gorilla/mux v1.6.2
 	github.com/magiconair/properties v1.8.0
-	github.com/sarulabs/di v2.0.0+incompatible // indirect
+	github.com/sarulabs/di v2.0.0+incompatible
 	github.com/stretchr/testify v1.2.2
 	github.com/vektra/mockery v0.0.0-20180815001236-ea265755d541 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect
